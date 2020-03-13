@@ -13,6 +13,7 @@
 $databases = [];
 $config_directories = [];
 $settings['file_temp_path'] = '/app/tmp';
+$settings['file_private_path'] = '/app/private';
 $settings['update_free_access'] = FALSE;
 $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
 $settings['file_scan_ignore_directories'] = [
