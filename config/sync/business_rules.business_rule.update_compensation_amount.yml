@@ -1,0 +1,16 @@
+uuid: 7085c06d-0584-48af-916d-0092e5351c1d
+langcode: en
+status: true
+dependencies: {  }
+id: update_compensation_amount
+label: 'Update Compensation Amount'
+description: 'Updates compensation amount before saving when Survey Complete, Visit Complete, Accelerometer Status: Complete.'
+reacts_on: entity_presave
+target_entity_type: paragraph
+target_bundle: change_club_timepoints
+items:
+  survey_completed:
+    id: survey_completed
+    type: condition
+    weight: -9
+tags: {  }

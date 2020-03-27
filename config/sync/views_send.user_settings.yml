@@ -1,1 +1,53 @@
-{  }
+'emails:page_1':
+  'uid:1':
+    bulk_form:
+      - 0
+      - 0
+    from_name: 'Strong Healthy Communities'
+    from_mail: mark@munkeewired.com
+    tokens:
+      name_pos_0: name
+      mail_pos_1: mail
+      field_study_site_pos_2: field_study_site
+      field_study_site_dates_pos_3: field_study_site_dates
+      field_educator_pos_4: field_educator
+      field_survey_link_pos_5: field_survey_link
+    to_name: name_pos_0
+    to_mail: mail_pos_1
+    subject: 'Testing Email Tool'
+    message:
+      value: "<p>Testing Email tool formatting.</p>\r\n\r\n<p>[views-send:field_study_site]<br />\r\n[views-send:field_educator]<br />\r\n[views-send:field_study_site_dates]<br />\r\n[views-send:field_survey_link]</p>\r\n"
+      format: basic_html
+    priority: '0'
+    receipt: 0
+    headers: ''
+    direct: 1
+    carbon_copy: 0
+    remember: 1
+    attachments: ''
+  'uid:539':
+    bulk_form:
+      - 0
+      - 0
+    from_name: 'Change Club'
+    from_mail: admin@stronghealthycommunities.org
+    tokens:
+      name_pos_0: name
+      mail_pos_1: mail
+      field_study_site_pos_2: field_study_site
+      field_study_site_dates_pos_3: field_study_site_dates
+      field_educator_pos_4: field_educator
+      field_survey_link_pos_5: field_survey_link
+    to_name: name_pos_0
+    to_mail: mail_pos_1
+    subject: 'CC Test Email'
+    message:
+      value: "<p>Dear (name),&nbsp;</p>\r\n\r\n<p>Hi&nbsp;views-send:name,&nbsp;</p>\r\n\r\n<p>Hello&nbsp;[views-send:name],</p>\r\n\r\n<p><br />\r\nThis is a test email.&nbsp;<br />\r\n<br />\r\nHere is a test survey...</p>\r\n\r\n<p>Link 1: (field_survey_link).&nbsp;</p>\r\n\r\n<p>Link 2:&nbsp;views-send:field_survey_link</p>\r\n\r\n<p>Link 3:&nbsp;[views-send:field_survey_link]</p>\r\n\r\n<p>Change Club staff</p>\r\n"
+      format: full_html
+    priority: '0'
+    receipt: 0
+    headers: ''
+    direct: 0
+    carbon_copy: 0
+    remember: 1
+    attachments: ''

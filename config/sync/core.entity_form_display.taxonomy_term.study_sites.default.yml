@@ -16,7 +16,7 @@ bundle: study_sites
 mode: default
 content:
   field_educator:
-    weight: 3
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -31,13 +31,13 @@ content:
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: ''
       closed_mode: summary
       autocollapse: none
+      add_mode: dropdown
+      form_display_mode: default
+      edit_mode: closed
       closed_mode_threshold: 0
+      default_paragraph_type: ''
       features:
         duplicate: duplicate
         collapse_edit_all: collapse_edit_all
@@ -61,7 +61,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 100
+    weight: 5
     region: content
     third_party_settings: {  }
 hidden:

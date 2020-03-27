@@ -1,0 +1,25 @@
+uuid: f43e294a-cdd1-4f3a-876a-5cb73e934f1d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_amount_redeemed
+    - paragraphs.paragraphs_type.change_club_timepoints
+id: paragraph.change_club_timepoints.field_amount_redeemed
+field_name: field_amount_redeemed
+entity_type: paragraph
+bundle: change_club_timepoints
+label: Redeemed
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: !!float 0
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: '$ '
+  suffix: ''
+field_type: decimal

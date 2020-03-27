@@ -1,0 +1,10 @@
+uuid: 757d8d36-09f7-44ee-b739-ce198512d77f
+langcode: en
+status: true
+dependencies: {  }
+id: change_club
+label: 'Change Club'
+description: 'Change Club Migrations'
+source_type: ''
+module: null
+shared_configuration: null

@@ -1,0 +1,22 @@
+uuid: 6f43a776-20ae-4474-974d-b0399a393d47
+langcode: en
+status: true
+dependencies: {  }
+id: compensation_loop
+label: 'Compensation Loop'
+description: 'Loops through Compensation (views result variable).'
+type: loop_through_view_result
+target_entity_type: null
+target_bundle: null
+tags: {  }
+settings:
+  variable: compensation
+  items:
+    write_compensation_amount:
+      weight: -100
+      type: action
+      id: write_compensation_amount
+    update_amount_earned:
+      weight: -99
+      type: action
+      id: update_amount_earned

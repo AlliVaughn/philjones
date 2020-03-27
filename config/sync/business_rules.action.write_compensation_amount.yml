@@ -1,0 +1,14 @@
+uuid: 2827283d-66b6-46c8-b1ad-972b8070057f
+langcode: en
+status: true
+dependencies: {  }
+id: write_compensation_amount
+label: 'Write compensation amount'
+description: 'Write compensation amount to Notes'
+type: set_field_value
+target_entity_type: paragraph
+target_bundle: change_club_timepoints
+tags: {  }
+settings:
+  field: field_notes
+  value: 'Compensation updated [current-date:custom:n/j/Y].'

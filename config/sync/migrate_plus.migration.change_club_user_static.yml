@@ -1,0 +1,92 @@
+uuid: dbf85d56-a20f-48ea-af02-194a0ac9118c
+langcode: en
+status: true
+dependencies: {  }
+id: change_club_user_static
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: change_club
+label: 'Import change club members from static file to user with change club partipipant role'
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  urls:
+    - 'public://products.json'
+  ids:
+    ResponseID:
+      type: string
+  item_selector: responses
+  fields:
+    -
+      name: ResponseID
+      label: 'Unique identifier'
+      selector: ResponseID
+    -
+      name: field_response_id
+      label: 'Participant ID'
+      selector: IDNUM
+    -
+      name: Firstname
+      label: Firstname
+      selector: ELIG2
+    -
+      name: Lastname
+      label: Lastname
+      selector: ELIG3
+    -
+      name: mail
+      label: Email
+      selector: ELIG4
+    -
+      name: field_primary_phone
+      label: 'Primary Phone'
+      selector: ELIG5
+    -
+      name: field_street_address
+      label: 'Street Address'
+      selector: ELIG6
+    -
+      name: field_address_city
+      label: City
+      selector: ELIG7
+    -
+      name: field_address_state
+      label: State
+      selector: ELIG8
+    -
+      name: field_address_zip
+      label: 'Zip Code'
+      selector: ELIG9
+process:
+  name:
+    plugin: concat
+    source:
+      - Firstname
+      - Lastname
+      - field_response_id
+    delimiter: '-'
+  mail: mail
+  pass: changemeclub
+  field_street_address: field_street_address
+  field_address_city: field_address_city
+  field_address_state: field_address_state
+  field_address_zip: field_address_zip
+  field_displa:
+    plugin: concat
+    source:
+      - Firstname
+      - Lastname
+    delimiter: ' '
+  field_email: mail
+  field_response_id: field_response_id
+  field_primary_phone: field_primary_phone
+  status:
+    plugin: default_value
+    default_value: 0
+destination:
+  plugin: 'entity:user'
+  md5_passwords: true
+migration_dependencies: null

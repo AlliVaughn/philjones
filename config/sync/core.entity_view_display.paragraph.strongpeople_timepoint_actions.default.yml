@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.strongpeople_timepoint_actions.field_accelerometer_returned
+    - field.field.paragraph.strongpeople_timepoint_actions.field_accelerometer_status
     - field.field.paragraph.strongpeople_timepoint_actions.field_accelerometer_worn
     - field.field.paragraph.strongpeople_timepoint_actions.field_baseline_accelerometer_id
     - field.field.paragraph.strongpeople_timepoint_actions.field_completed_on_paper
@@ -30,6 +31,13 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
+  field_accelerometer_status:
+    weight: 9
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
   field_accelerometer_worn:
     weight: 5

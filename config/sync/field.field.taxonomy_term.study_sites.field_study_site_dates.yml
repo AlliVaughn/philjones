@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.taxonomy_term.field_study_site_dates
+    - paragraphs.paragraphs_type.change_club_site_timepoints
     - paragraphs.paragraphs_type.study_site_dates
     - taxonomy.vocabulary.study_sites
   module:
@@ -12,7 +13,7 @@ id: taxonomy_term.study_sites.field_study_site_dates
 field_name: field_study_site_dates
 entity_type: taxonomy_term
 bundle: study_sites
-label: 'Study Site Timepoints'
+label: 'Timepoint Dates'
 description: ''
 required: false
 translatable: false
@@ -24,20 +25,27 @@ settings:
     negate: 0
     target_bundles:
       study_site_dates: study_site_dates
+      change_club_site_timepoints: change_club_site_timepoints
     target_bundles_drag_drop:
       study_site_dates:
         enabled: true
         weight: 2
+      change_club_timepoints:
+        weight: 6
+        enabled: false
       compensation_data:
         weight: 6
         enabled: false
       educator_info:
         weight: 7
         enabled: false
+      change_club_site_timepoints:
+        enabled: true
+        weight: 8
       strongpeople_timepoint_actions:
         weight: 8
         enabled: false
-      study:
+      compensation_types:
         weight: 9
         enabled: false
 field_type: entity_reference_revisions

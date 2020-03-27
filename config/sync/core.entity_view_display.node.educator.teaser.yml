@@ -1,9 +1,10 @@
 uuid: 10045714-e320-407c-bc46-b890cc000485
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.educator.field_educator_info
     - node.type.educator
   module:
     - user
@@ -17,4 +18,5 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_educator_info: true

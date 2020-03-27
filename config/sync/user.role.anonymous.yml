@@ -11,10 +11,5 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
-  - 'search content'
+  - 'access site-wide contact form'
   - 'use text format restricted_html'
-  - 'view article revisions'
-  - 'view change_club revisions'
-  - 'view educator revisions'
-  - 'view page revisions'
-  - 'view strongpeople_strength revisions'

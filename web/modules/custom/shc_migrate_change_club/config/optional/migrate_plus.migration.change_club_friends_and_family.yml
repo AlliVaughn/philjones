@@ -1,0 +1,87 @@
+# Migration configuration for imported change club friends and family.
+id: change_club_friends_and_family
+label: Import change club friends and family from static file to change club content type
+migration_group: change_club
+destination:
+  plugin: 'entity:node'
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  urls:
+    - 'private://qualtrics_data/SV_dhtucmrn6CzwZTL.json'
+  ids:
+    ResponseID:
+      type: string
+  item_selector: responses
+  constants:
+    link_prefix: 'https://cornell.qualtrics.com/jfe/form/SV_dhtucmrn6CzwZTL?PPTID='
+  fields:
+    -
+      name: ResponseID
+      label: 'Unique identifier'
+      selector: ResponseID
+    -
+      name: field_response_id
+      label: 'Participant ID'
+      selector: IDNUM
+    -
+      name: Firstname
+      label: 'Firstname'
+      selector: ELIG2
+    -
+      name: Lastname
+      label: 'Lastname'
+      selector: ELIG3
+    -
+      name: field_study_site
+      label: 'Study Site'
+      selector: ES6
+    -
+      name: field_gender
+      label: 'Gender'
+      selector: S_DM2
+    -
+      name: field_age
+      label: 'Age'
+      selector: S_DM1
+    -
+      name: field_active
+      label: 'Active'
+      selector: S_DM4
+process:
+  type:
+    plugin: default_value
+    default_value: change_club
+  title:
+      source:
+      plugin: concat
+      source:
+        - Firstname
+        - Lastname
+      delimiter: ' '
+  field_response_id: field_response_id
+  field_user:
+    plugin: entity_lookup
+    source: field_response_id
+    entity_type: user
+    value_key: field_response_id
+  field_study_site:
+    plugin: entity_lookup
+    source: field_study_site
+    entity_type: taxonomy_term
+    value_key: name
+  field_gender: field_gender
+  field_age: field_age
+  field_active: field_active
+  'field_survey_link/uri':
+    plugin: concat
+    source:
+        - 'constants/link_prefix'
+        - field_response_id
+  field_participant_role_reference:
+    plugin: default_value
+    default_value: 26
+  uid:
+    plugin: default_value
+    default_value: 0

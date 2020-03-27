@@ -1,0 +1,6 @@
+shc_migrate_change_club.settings:
+ title: 'Qualtrics Settings'
+ description: 'Qualtrics settings for API integrations'
+ parent: system.admin_config_services
+ route_name: shc_migrate_change_club.settings
+ weight: 100

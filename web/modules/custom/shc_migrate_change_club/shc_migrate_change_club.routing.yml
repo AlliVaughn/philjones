@@ -1,0 +1,14 @@
+shc_migrate_change_club.settings:
+  path: 'admin/config/services/change-club-settings'
+  defaults:
+   _form: '\Drupal\shc_migrate_change_club\Form\QualtricsSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'
+
+shc_migrate_change_club.shc_migrate_change_club_controller_content:
+  path: 'shc_migrate_change_club'
+  defaults:
+    _controller: '\Drupal\shc_migrate_change_club\Controller\Migrate_Change_ClubController::content'
+    _title: 'Import Qualtrics survey results'
+  requirements:
+    _permission: 'administer site configuration'

@@ -1,0 +1,94 @@
+uuid: a37ea137-3e3f-4e4a-8753-3f7fca51d39e
+langcode: en
+status: true
+dependencies: {  }
+id: change_club_member_static
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: change_club
+label: 'Import change club members from static file to change club content type'
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  urls:
+    - 'public://products.json'
+  ids:
+    ResponseID:
+      type: string
+  item_selector: responses
+  constants:
+    link_prefix: 'https://cornell.qualtrics.com/jfe/form/SV_d5aU6KjwILkcTVr?PPTID='
+  fields:
+    -
+      name: ResponseID
+      label: 'Unique identifier'
+      selector: ResponseID
+    -
+      name: field_response_id
+      label: 'Participant ID'
+      selector: IDNUM
+    -
+      name: Firstname
+      label: Firstname
+      selector: ELIG2
+    -
+      name: Lastname
+      label: Lastname
+      selector: ELIG3
+    -
+      name: field_study_site
+      label: 'Study Site'
+      selector: ES6
+    -
+      name: field_gender
+      label: Gender
+      selector: S_DM2
+    -
+      name: field_age
+      label: Age
+      selector: S_DM1
+    -
+      name: field_active
+      label: Active
+      selector: S_DM4
+process:
+  type:
+    plugin: default_value
+    default_value: change_club
+  title:
+    source:
+      - Firstname
+      - Lastname
+    plugin: concat
+    delimiter: ' '
+  field_response_id: field_response_id
+  field_user:
+    plugin: entity_lookup
+    source: field_response_id
+    entity_type: user
+    value_key: field_response_id
+  field_study_site:
+    plugin: entity_lookup
+    source: field_study_site
+    entity_type: taxonomy_term
+    value_key: name
+  field_gender: field_gender
+  field_age: field_age
+  field_active: field_active
+  field_survey_link/uri:
+    plugin: concat
+    source:
+      - constants/link_prefix
+      - field_response_id
+  field_participant_role_reference:
+    plugin: default_value
+    default_value: 25
+  uid:
+    plugin: default_value
+    default_value: 0
+destination:
+  plugin: 'entity:node'
+migration_dependencies: null

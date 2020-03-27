@@ -10,7 +10,7 @@ id: taxonomy_term.study_sites.field_educator
 field_name: field_educator
 entity_type: taxonomy_term
 bundle: study_sites
-label: Educator
+label: 'Educator Contact Info'
 description: ''
 required: false
 translatable: false

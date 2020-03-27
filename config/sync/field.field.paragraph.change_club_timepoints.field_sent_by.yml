@@ -1,0 +1,19 @@
+uuid: 1352a616-133f-46ee-9e04-a3487e61aaeb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sent_by
+    - paragraphs.paragraphs_type.change_club_timepoints
+id: paragraph.change_club_timepoints.field_sent_by
+field_name: field_sent_by
+entity_type: paragraph
+bundle: change_club_timepoints
+label: 'Sent by'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Study Sites'
 vid: study_sites
-description: 'Study sites and their related dates, etc.'
+description: 'Study sites and their related dates, educators.'
 weight: 0

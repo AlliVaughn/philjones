@@ -1,0 +1,43 @@
+uuid: 45928da3-110c-408b-bfef-a412be731380
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.change_club
+  module:
+    - feeds_ex
+    - node
+label: 'JSON Change Club'
+id: json_change_club
+description: 'Creates survey records for users participating in Change Club Study Data - Change Club Member'
+help: ''
+import_period: 3600
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: jsonpath
+parser_configuration:
+  context:
+    value: ''
+  sources: {  }
+  display_errors: false
+  source_encoding:
+    - auto
+  debug_mode: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  update_existing: 0
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: false
+  owner_id: 1
+  authorize: true
+  skip_hash_check: false
+  values:
+    type: change_club
+custom_sources: {  }
+mappings: {  }

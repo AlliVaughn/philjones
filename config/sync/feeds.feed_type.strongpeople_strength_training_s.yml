@@ -3,6 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.strongpeople_strength.field_active
+    - field.field.node.strongpeople_strength.field_age
+    - field.field.node.strongpeople_strength.field_gender
+    - field.field.node.strongpeople_strength.field_need_hcp
     - field.field.node.strongpeople_strength.field_response_id
     - field.field.node.strongpeople_strength.field_study_site
     - field.field.node.strongpeople_strength.field_survey_link
@@ -29,6 +33,45 @@ third_party_settings:
         weight: 0
         label: Rewrite
         uuid: 0ef713ec-8439-439e-8213-2de04dfaf061
+      5108c52b-a8fd-4829-b167-0a855d2ba3bc:
+        default_value: '1'
+        only_if_empty: false
+        plugin: default_value
+        source: q6
+        weight: 0
+        label: 'Set value or default value'
+        uuid: 5108c52b-a8fd-4829-b167-0a855d2ba3bc
+      dc953a54-5f0b-41e9-bf81-2116b97ab82e:
+        find: '/,.*$/'
+        replace: ''
+        limit: null
+        plugin: find_replace_regex
+        source: q47
+        weight: -8
+        label: 'Find replace REGEX'
+        uuid: dc953a54-5f0b-41e9-bf81-2116b97ab82e
+      40c26c89-5ced-4c5c-968f-4614524ba84d:
+        find: 'Yes'
+        replace: '1'
+        case_sensitive: false
+        whole: false
+        plugin: find_replace
+        source: q47
+        weight: -10
+        label: 'Find replace Yes'
+        word_boundaries: false
+        uuid: 40c26c89-5ced-4c5c-968f-4614524ba84d
+      f03c9313-a37f-4755-92a1-9ca525d25be2:
+        find: 'No'
+        replace: '0'
+        case_sensitive: false
+        whole: false
+        plugin: find_replace
+        source: q47
+        weight: -9
+        label: 'Find replace No'
+        word_boundaries: false
+        uuid: f03c9313-a37f-4755-92a1-9ca525d25be2
 label: 'StrongPeople Strength Training Study'
 id: strongpeople_strength_training_s
 description: 'Creates survey records for users participating in the StrongPeople Strength Training Study'
@@ -95,6 +138,22 @@ custom_sources:
     label: Q56
     value: Q56
     machine_name: q56
+  q3:
+    label: Q3
+    value: Q3
+    machine_name: q3
+  q5:
+    label: Q5
+    value: Q5
+    machine_name: q5
+  q6:
+    label: Q6
+    value: Q6
+    machine_name: q6
+  q47:
+    label: Q47
+    value: Q47
+    machine_name: q47
 mappings:
   -
     target: field_response_id
@@ -122,3 +181,19 @@ mappings:
     settings:
       reference_by: name
       autocreate: false
+  -
+    target: field_gender
+    map:
+      value: q3
+  -
+    target: field_age
+    map:
+      value: q5
+  -
+    target: field_active
+    map:
+      value: q6
+  -
+    target: field_need_hcp
+    map:
+      value: q47

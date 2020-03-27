@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.strongpeople_strength.field_photo_video_consent
     - field.field.node.strongpeople_strength.field_response_id
     - field.field.node.strongpeople_strength.field_start_date
+    - field.field.node.strongpeople_strength.field_study_image
     - field.field.node.strongpeople_strength.field_study_site
     - field.field.node.strongpeople_strength.field_survey_link
     - field.field.node.strongpeople_strength.field_timepoint_actions
@@ -66,6 +67,7 @@ hidden:
   field_photo_video_consent: true
   field_response_id: true
   field_start_date: true
+  field_study_image: true
   field_study_site: true
   field_survey_link: true
   field_timepoint_actions: true

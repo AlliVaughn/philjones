@@ -1,0 +1,25 @@
+uuid: 4dd63cf8-5717-49f2-9f55-82273b23b243
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_amount_earned
+    - paragraphs.paragraphs_type.change_club_timepoints
+id: paragraph.change_club_timepoints.field_amount_earned
+field_name: field_amount_earned
+entity_type: paragraph
+bundle: change_club_timepoints
+label: Earned
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: !!float 0
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: '$ '
+  suffix: ''
+field_type: decimal

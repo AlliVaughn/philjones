@@ -18,7 +18,7 @@ mode: default
 content:
   field_contact_label:
     weight: 0
-    label: inline
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -33,7 +33,7 @@ content:
     region: content
   field_educator_email:
     weight: 1
-    label: inline
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
@@ -47,7 +47,7 @@ content:
     region: content
   field_educator_phone:
     weight: 2
-    label: inline
+    label: hidden
     settings:
       title: ''
     third_party_settings: {  }

@@ -6,30 +6,30 @@ dependencies:
     - field.field.node.change_club.feeds_item
     - field.field.node.change_club.field_active
     - field.field.node.change_club.field_age
-    - field.field.node.change_club.field_compensation_data
     - field.field.node.change_club.field_end_date
     - field.field.node.change_club.field_enrolled_consented
     - field.field.node.change_club.field_gender
-    - field.field.node.change_club.field_hcp_date
-    - field.field.node.change_club.field_hcp_notes
     - field.field.node.change_club.field_incedental_findings_consen
     - field.field.node.change_club.field_intervention_group
-    - field.field.node.change_club.field_need_hcp
-    - field.field.node.change_club.field_participant_role
+    - field.field.node.change_club.field_participant_id_previous
+    - field.field.node.change_club.field_participant_role_reference
     - field.field.node.change_club.field_photo_video_consent
     - field.field.node.change_club.field_response_id
     - field.field.node.change_club.field_start_date
+    - field.field.node.change_club.field_study_image
     - field.field.node.change_club.field_study_site
     - field.field.node.change_club.field_survey_link
     - field.field.node.change_club.field_timepoint_actions
     - field.field.node.change_club.field_user
     - field.field.node.change_club.field_why_inactive
+    - image.style.thumbnail
     - node.type.change_club
   module:
     - datetime
+    - default_paragraphs
     - field_group
+    - image
     - link
-    - paragraphs
 third_party_settings:
   field_group:
     group_participant_data:
@@ -39,17 +39,15 @@ third_party_settings:
         - field_gender
         - field_study_site
         - field_response_id
+        - field_participant_id_previous
         - field_survey_link
         - field_active
         - field_enrolled_consented
         - field_intervention_group
-        - field_participant_role
+        - field_participant_role_reference
         - field_start_date
         - field_incedental_findings_consen
         - field_photo_video_consent
-        - field_need_hcp
-        - field_hcp_date
-        - field_hcp_notes
         - field_end_date
         - field_why_inactive
       parent_name: group_edit_survey_records
@@ -63,27 +61,12 @@ third_party_settings:
         classes: ''
       label: 'Participant Data'
       region: content
-    group_compensation:
-      children:
-        - field_compensation_data
-      parent_name: group_edit_survey_records
-      weight: 3
-      format_type: tab
-      format_settings:
-        description: ''
-        formatter: closed
-        required_fields: true
-        id: ''
-        classes: ''
-      label: 'Compensation Data'
-      region: content
     group_edit_survey_records:
       children:
         - group_participant_data
-        - group_compensation
         - group_timepoint_actions
       parent_name: ''
-      weight: 1
+      weight: 2
       format_type: tabs
       format_settings:
         direction: horizontal
@@ -96,11 +79,11 @@ third_party_settings:
       children:
         - field_timepoint_actions
       parent_name: group_edit_survey_records
-      weight: 4
+      weight: 3
       format_type: tab
       format_settings:
         description: ''
-        formatter: closed
+        formatter: open
         required_fields: true
         id: ''
         classes: ''
@@ -113,7 +96,7 @@ mode: default
 content:
   field_active:
     type: boolean_checkbox
-    weight: 13
+    weight: 14
     region: content
     settings:
       display_label: true
@@ -126,32 +109,31 @@ content:
     type: number
     region: content
   field_compensation_data:
-    type: paragraphs
+    type: default_paragraphs
     weight: 31
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: ''
       closed_mode: summary
       autocollapse: none
-      closed_mode_threshold: 0
-      features:
-        duplicate: duplicate
-        collapse_edit_all: collapse_edit_all
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_types:
+        compensation_data:
+          value: '1'
+          weight: '0'
+      edit_mode: closed
     third_party_settings: {  }
     region: content
   field_end_date:
     type: datetime_default
-    weight: 23
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
   field_enrolled_consented:
     type: boolean_checkbox
-    weight: 14
+    weight: 15
     region: content
     settings:
       display_label: true
@@ -163,13 +145,13 @@ content:
     type: options_select
     region: content
   field_hcp_date:
-    weight: 21
+    weight: 23
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_hcp_notes:
-    weight: 22
+    weight: 24
     settings:
       size: 60
       placeholder: ''
@@ -177,7 +159,7 @@ content:
     type: string_textfield
     region: content
   field_incedental_findings_consen:
-    weight: 18
+    weight: 20
     settings:
       display_label: true
     third_party_settings: {  }
@@ -185,25 +167,39 @@ content:
     region: content
   field_intervention_group:
     type: options_select
-    weight: 15
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
   field_need_hcp:
-    weight: 20
+    weight: 22
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
+  field_participant_id_previous:
+    weight: 12
+    settings:
+      size: 10
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_participant_role:
-    weight: 16
+    weight: 17
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_participant_role_reference:
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_photo_video_consent:
-    weight: 19
+    weight: 21
     settings:
       display_label: true
     third_party_settings: {  }
@@ -214,15 +210,23 @@ content:
     weight: 11
     region: content
     settings:
-      size: 60
+      size: 10
       placeholder: ''
     third_party_settings: {  }
   field_start_date:
     type: datetime_default
-    weight: 17
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_study_image:
+    weight: 0
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
   field_study_site:
     weight: 10
     settings: {  }
@@ -231,28 +235,27 @@ content:
     region: content
   field_survey_link:
     type: link_default
-    weight: 12
+    weight: 13
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
   field_timepoint_actions:
-    type: paragraphs
+    type: default_paragraphs
     weight: 3
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
+      closed_mode: preview
+      autocollapse: none
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
-      closed_mode: summary
-      autocollapse: none
-      closed_mode_threshold: 0
-      features:
-        duplicate: duplicate
-        collapse_edit_all: collapse_edit_all
+      default_paragraph_types:
+        change_club_timepoints:
+          value: '1'
+          weight: '0'
+      edit_mode: closed
     third_party_settings: {  }
     region: content
   field_user:
@@ -267,7 +270,7 @@ content:
     third_party_settings: {  }
   field_why_inactive:
     type: string_textfield
-    weight: 24
+    weight: 26
     region: content
     settings:
       size: 60
@@ -275,7 +278,7 @@ content:
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60

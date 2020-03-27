@@ -1,0 +1,15 @@
+uuid: 3b0a2648-8d52-469a-aa75-da793246d962
+langcode: en
+status: true
+dependencies: {  }
+id: compensation
+label: Compensation
+type: view_result_variable
+description: 'Compensation amount lookup with Timepoint and Participant role term IDs as contextual filters.'
+target_entity_type: null
+target_bundle: null
+tags: {  }
+settings:
+  view: 'compensation:entity_reference_1'
+  view_html: 0
+  arguments: "{{participant_role_reference->field_participant_role_reference}}\r\n{{timepoint}}"

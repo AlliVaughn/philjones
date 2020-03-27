@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: change_club
+label: Change Club
+description: 'Change Club Migrations'
+source_type: ''
+module: null
+shared_configuration: null

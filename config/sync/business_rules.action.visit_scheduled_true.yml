@@ -1,0 +1,14 @@
+uuid: 1a539df9-6cb1-4a77-a6a9-02eb9afa9b64
+langcode: en
+status: true
+dependencies: {  }
+id: visit_scheduled_true
+label: 'Visit Scheduled True'
+description: 'Set Visit Scheduled = True'
+type: set_field_value
+target_entity_type: paragraph
+target_bundle: change_club_timepoints
+tags: {  }
+settings:
+  field: field_visit_scheduled
+  value: '1'

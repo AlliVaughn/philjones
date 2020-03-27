@@ -1,0 +1,26 @@
+uuid: 1551dc5a-255a-4600-ae1e-28f1e111fe0d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_balance
+    - paragraphs.paragraphs_type.change_club_timepoints
+  module:
+    - computed_field
+id: paragraph.change_club_timepoints.field_balance
+field_name: field_balance
+entity_type: paragraph
+bundle: change_club_timepoints
+label: Balance
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  code: '$value = $fields[''field_amount_earned''][0][''value''] - $fields[''field_amount_redeemed''][0][''value''];'
+  prefix: '$ '
+  suffix: ''
+field_type: computed_decimal

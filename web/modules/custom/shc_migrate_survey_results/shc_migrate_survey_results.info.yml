@@ -1,5 +1,0 @@
-name: 'SHC Migrate Survey Results'
-type: module
-description: 'Migrate survey data from Qualtrics API, .csv'
-core: 8.x
-package: 'SHC'

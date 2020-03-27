@@ -4,29 +4,37 @@ status: true
 dependencies:
   config:
     - field.field.user.user.feeds_item
-    - field.field.user.user.field_age
+    - field.field.user.user.field_address_city
+    - field.field.user.user.field_address_state
+    - field.field.user.user.field_address_zip
     - field.field.user.user.field_displa
-    - field.field.user.user.field_gender
-    - field.field.user.user.field_last_contact_date
+    - field.field.user.user.field_email
+    - field.field.user.user.field_migrate_example_favbeers
+    - field.field.user.user.field_migrate_example_gender
     - field.field.user.user.field_mobile_phone_carrier
-    - field.field.user.user.field_need_hcp
     - field.field.user.user.field_preferred_contact
     - field.field.user.user.field_primary_phone
     - field.field.user.user.field_response_id
+    - field.field.user.user.field_street_address
+    - field.field.user.user.field_study_data
   module:
-    - datetime
     - field_group
     - telephone
     - user
+    - viewsreference
 third_party_settings:
   field_group:
     group_contact_info:
       children:
         - field_displa
+        - field_email
+        - field_street_address
+        - field_address_city
+        - field_address_state
+        - field_address_zip
         - field_primary_phone
         - field_mobile_phone_carrier
         - field_preferred_contact
-        - field_last_contact_date
       parent_name: group_user_account
       weight: 4
       format_type: tab
@@ -41,9 +49,7 @@ third_party_settings:
     group_survey_info:
       children:
         - field_response_id
-        - field_gender
-        - field_age
-        - field_need_hcp
+        - field_study_data
       parent_name: group_user_account
       weight: 5
       format_type: tab
@@ -99,12 +105,29 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_age:
-    weight: 10
+  field_address_city:
+    weight: 5
     settings:
+      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: number
+    type: string_textfield
+    region: content
+  field_address_state:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_address_zip:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_displa:
     weight: 2
@@ -114,39 +137,28 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_gender:
+  field_email:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: content
+  field_mobile_phone_carrier:
     weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
-  field_last_contact_date:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_mobile_phone_carrier:
-    weight: 5
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_need_hcp:
-    weight: 11
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   field_preferred_contact:
-    weight: 6
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_primary_phone:
-    weight: 3
+    weight: 8
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -160,9 +172,29 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_street_address:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_study_data:
+    weight: 9
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: viewsreference_autocomplete
+    region: content
 hidden:
   contact: true
   feeds_item: true
+  field_migrate_example_favbeers: true
+  field_migrate_example_gender: true
   language: true
   path: true
   timezone: true

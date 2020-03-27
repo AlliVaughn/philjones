@@ -1,0 +1,198 @@
+uuid: 1975d8b1-47bc-438b-953c-bd8b75395446
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.change_club_timepoints.field_accelerometer_status
+    - field.field.paragraph.change_club_timepoints.field_amount_earned
+    - field.field.paragraph.change_club_timepoints.field_amount_redeemed
+    - field.field.paragraph.change_club_timepoints.field_balance
+    - field.field.paragraph.change_club_timepoints.field_date_recorded
+    - field.field.paragraph.change_club_timepoints.field_how_sent
+    - field.field.paragraph.change_club_timepoints.field_notes
+    - field.field.paragraph.change_club_timepoints.field_sent_by
+    - field.field.paragraph.change_club_timepoints.field_sent_to
+    - field.field.paragraph.change_club_timepoints.field_survey_completed
+    - field.field.paragraph.change_club_timepoints.field_timepoint_reference
+    - field.field.paragraph.change_club_timepoints.field_visit_completed
+    - field.field.paragraph.change_club_timepoints.field_visit_scheduled
+    - field.field.paragraph.change_club_timepoints.field_w
+    - paragraphs.paragraphs_type.change_club_timepoints
+  module:
+    - computed_field
+    - datetime
+    - field_group
+    - options
+third_party_settings:
+  field_group:
+    group_compensation:
+      children:
+        - field_amount_earned
+        - field_amount_redeemed
+        - field_balance
+        - field_w
+        - field_sent_by
+        - field_sent_to
+        - field_how_sent
+        - field_notes
+      parent_name: ''
+      weight: 2
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+      label: Compensation
+    group_timepoint:
+      children:
+        - field_timepoint_reference
+        - field_survey_completed
+        - field_visit_scheduled
+        - field_date_recorded
+        - field_visit_completed
+        - field_accelerometer_status
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+      label: Timepoint
+id: paragraph.change_club_timepoints.default
+targetEntityType: paragraph
+bundle: change_club_timepoints
+mode: default
+content:
+  field_accelerometer_status:
+    weight: 6
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_amount_earned:
+    weight: 7
+    label: inline
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_amount_redeemed:
+    weight: 8
+    label: inline
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_balance:
+    weight: 9
+    label: inline
+    settings:
+      cache_unit: -1
+      cache_duration: 1
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: computed_decimal
+    region: content
+  field_date_recorded:
+    weight: 4
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: month_day_year
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_how_sent:
+    weight: 13
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_notes:
+    weight: 14
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_sent_by:
+    weight: 11
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sent_to:
+    weight: 12
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_survey_completed:
+    weight: 2
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_timepoint_reference:
+    weight: 1
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_visit_completed:
+    weight: 5
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_visit_scheduled:
+    weight: 3
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_w:
+    weight: 10
+    label: inline
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+hidden: {  }

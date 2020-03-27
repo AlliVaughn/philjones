@@ -10,7 +10,7 @@ id: user.user.field_response_id
 field_name: field_response_id
 entity_type: user
 bundle: user
-label: 'Response ID'
+label: 'Participant ID'
 description: ''
 required: false
 translatable: false

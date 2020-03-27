@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: survey_participant
-label: 'Study Participant'
+label: 'Strong People Participant'
 weight: -3
 is_admin: null
 permissions:

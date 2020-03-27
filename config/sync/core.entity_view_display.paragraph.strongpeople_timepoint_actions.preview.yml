@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
     - field.field.paragraph.strongpeople_timepoint_actions.field_accelerometer_returned
+    - field.field.paragraph.strongpeople_timepoint_actions.field_accelerometer_status
     - field.field.paragraph.strongpeople_timepoint_actions.field_accelerometer_worn
     - field.field.paragraph.strongpeople_timepoint_actions.field_baseline_accelerometer_id
     - field.field.paragraph.strongpeople_timepoint_actions.field_completed_on_paper
@@ -50,6 +51,7 @@ content:
     region: content
 hidden:
   field_accelerometer_returned: true
+  field_accelerometer_status: true
   field_accelerometer_worn: true
   field_baseline_accelerometer_id: true
   field_completed_on_paper: true

@@ -6,10 +6,12 @@ dependencies:
     - core.entity_view_mode.paragraph.preview
     - field.field.paragraph.compensation_data.field_amount_earned
     - field.field.paragraph.compensation_data.field_amount_redeemed
+    - field.field.paragraph.compensation_data.field_balance
     - field.field.paragraph.compensation_data.field_confirmation_number
     - field.field.paragraph.compensation_data.field_how_sent
     - field.field.paragraph.compensation_data.field_sent_by
     - field.field.paragraph.compensation_data.field_sent_to
+    - field.field.paragraph.compensation_data.field_timepoint_change_club
     - field.field.paragraph.compensation_data.field_w
     - paragraphs.paragraphs_type.compensation_data
 id: paragraph.compensation_data.preview
@@ -40,8 +42,10 @@ content:
     type: number_decimal
     region: content
 hidden:
+  field_balance: true
   field_confirmation_number: true
   field_how_sent: true
   field_sent_by: true
   field_sent_to: true
+  field_timepoint_change_club: true
   field_w: true

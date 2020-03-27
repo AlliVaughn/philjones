@@ -5,13 +5,16 @@ dependencies:
   config:
     - field.field.paragraph.compensation_data.field_amount_earned
     - field.field.paragraph.compensation_data.field_amount_redeemed
+    - field.field.paragraph.compensation_data.field_balance
     - field.field.paragraph.compensation_data.field_confirmation_number
     - field.field.paragraph.compensation_data.field_how_sent
     - field.field.paragraph.compensation_data.field_sent_by
     - field.field.paragraph.compensation_data.field_sent_to
+    - field.field.paragraph.compensation_data.field_timepoint_change_club
     - field.field.paragraph.compensation_data.field_w
     - paragraphs.paragraphs_type.compensation_data
   module:
+    - computed_field
     - datetime
 id: paragraph.compensation_data.default
 targetEntityType: paragraph
@@ -19,21 +22,27 @@ bundle: compensation_data
 mode: default
 content:
   field_amount_earned:
-    weight: 0
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
-    region: content
-  field_amount_redeemed:
     weight: 1
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
+  field_amount_redeemed:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_balance:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: computed_number_widget
+    region: content
   field_confirmation_number:
-    weight: 6
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -41,14 +50,6 @@ content:
     type: string_textfield
     region: content
   field_how_sent:
-    weight: 3
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_sent_by:
     weight: 4
     settings:
       size: 60
@@ -56,7 +57,7 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_sent_to:
+  field_sent_by:
     weight: 5
     settings:
       size: 60
@@ -64,8 +65,22 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_sent_to:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_timepoint_change_club:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_w:
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: datetime_default

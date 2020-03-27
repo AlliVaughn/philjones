@@ -1,0 +1,14 @@
+uuid: b20df023-d659-45d9-8344-60a8caebd041
+langcode: en
+status: true
+dependencies: {  }
+id: update_amount_earned
+label: 'Update Amount Earned'
+description: 'Update amount earned with field_compensation_amount from Compensation variable.'
+type: set_field_value
+target_entity_type: paragraph
+target_bundle: change_club_timepoints
+tags: {  }
+settings:
+  field: field_amount_earned
+  value: '{{compensation->field_compensation_amount}}'

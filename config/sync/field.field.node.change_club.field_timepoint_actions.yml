@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_timepoint_actions
     - node.type.change_club
-    - paragraphs.paragraphs_type.strongpeople_timepoint_actions
+    - paragraphs.paragraphs_type.change_club_timepoints
   module:
     - entity_reference_revisions
 id: node.change_club.field_timepoint_actions
@@ -23,15 +23,18 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      strongpeople_timepoint_actions: strongpeople_timepoint_actions
+      change_club_timepoints: change_club_timepoints
     target_bundles_drag_drop:
       educator_info:
         weight: 5
         enabled: false
-      strongpeople_timepoint_actions:
+      change_club_timepoints:
         enabled: true
         weight: 6
-      study:
+      strongpeople_timepoint_actions:
+        weight: 6
+        enabled: false
+      compensation_data:
         weight: 7
         enabled: false
       study_site_dates:

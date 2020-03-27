@@ -1,0 +1,18 @@
+uuid: cb49e80f-6255-406a-8a4a-166228727289
+langcode: en
+status: true
+dependencies: {  }
+id: participant_role_loop
+label: 'Participant Role Loop'
+description: 'Loop through Participant Role variable (views reference).'
+type: loop_through_view_result
+target_entity_type: null
+target_bundle: null
+tags: {  }
+settings:
+  variable: participant_role_reference
+  items:
+    compensation_loop:
+      weight: -99
+      type: action
+      id: compensation_loop
