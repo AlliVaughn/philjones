@@ -1,0 +1,16 @@
+uuid: 0b97cd6f-5425-48ed-bdb6-bdca29d6e6b7
+langcode: en
+status: true
+dependencies: {  }
+id: update_visit_scheduled
+label: 'Update Visit Scheduled'
+description: 'Update Visit Scheduled to TRUE if Visit Date is filled.'
+reacts_on: entity_presave
+target_entity_type: paragraph
+target_bundle: change_club_timepoints
+items:
+  visit_date_filled:
+    id: visit_date_filled
+    type: condition
+    weight: -9
+tags: {  }

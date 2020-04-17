@@ -1,0 +1,33 @@
+uuid: 5c2ed7a0-0aaf-48d9-9948-fdc77078a19e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_timepoint_reference
+    - paragraphs.paragraphs_type.change_club_timepoints
+    - taxonomy.vocabulary.timepoints
+  content:
+    - 'taxonomy_term:timepoints:74bcb576-69b5-4b53-b4b9-4d2a4bb78569'
+id: paragraph.change_club_timepoints.field_timepoint_reference
+field_name: field_timepoint_reference
+entity_type: paragraph
+bundle: change_club_timepoints
+label: Timepoint
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 74bcb576-69b5-4b53-b4b9-4d2a4bb78569
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      timepoints: timepoints
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

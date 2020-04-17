@@ -1,0 +1,23 @@
+uuid: 13ffa3d4-7e39-4d90-be33-175a8c3a97ab
+langcode: en
+status: true
+dependencies: {  }
+id: visit_completed
+label: 'Visit Completed'
+type: data_comparison
+reverse: true
+description: 'Check to see if Visit Completed = TRUE'
+target_entity_type: paragraph
+target_bundle: change_club_timepoints
+success_items:
+  accelerometer_status:
+    id: accelerometer_status
+    type: condition
+    weight: -9
+fail_items: {  }
+tags: {  }
+settings:
+  field: field_visit_completed
+  data_to_compare: current_data
+  operator: empty
+  value_to_compare: 'TRUE'

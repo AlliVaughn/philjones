@@ -1,0 +1,23 @@
+uuid: 29a4be73-98b1-4060-af4e-cd867345d518
+langcode: en
+status: true
+dependencies: {  }
+id: visit_date_filled
+label: 'Visit Date Filled'
+type: data_comparison
+reverse: true
+description: 'Visit Date has a value.'
+target_entity_type: paragraph
+target_bundle: change_club_timepoints
+success_items:
+  visit_scheduled_true:
+    id: visit_scheduled_true
+    type: action
+    weight: -9
+fail_items: {  }
+tags: {  }
+settings:
+  field: field_date_recorded
+  data_to_compare: current_data
+  operator: empty
+  value_to_compare: ''

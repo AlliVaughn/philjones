@@ -1,0 +1,14 @@
+uuid: f49c33c9-8b9d-4bb0-a798-f33e6500cfa2
+langcode: en
+status: true
+dependencies: {  }
+id: nid
+label: NID
+type: entity_filed_variable
+description: 'NID of the current node.'
+target_entity_type: paragraph
+target_bundle: change_club_timepoints
+tags: {  }
+settings:
+  field: parent_id
+  data: original_data

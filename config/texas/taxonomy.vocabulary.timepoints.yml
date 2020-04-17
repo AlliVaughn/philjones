@@ -1,0 +1,8 @@
+uuid: 40ac2382-a5e1-479f-8d45-dcf23698b221
+langcode: en
+status: true
+dependencies: {  }
+name: Timepoints
+vid: timepoints
+description: 'Timepoints related to Studies and Compensation Types'
+weight: 0

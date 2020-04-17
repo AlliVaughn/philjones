@@ -1,0 +1,15 @@
+uuid: d56eee8c-d340-44c0-9687-9b46e2808654
+langcode: en
+status: true
+dependencies: {  }
+id: participant_role_reference
+label: 'Participant Role'
+type: view_result_variable
+description: 'Participant Role lookup using NID'
+target_entity_type: null
+target_bundle: null
+tags: {  }
+settings:
+  view: 'participant_role_reference:entity_reference_1'
+  view_html: 0
+  arguments: '{{nid}}'

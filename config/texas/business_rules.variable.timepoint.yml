@@ -1,0 +1,14 @@
+uuid: ed2a9e3b-f8fc-4414-b5ca-b59f3402e10f
+langcode: en
+status: true
+dependencies: {  }
+id: timepoint
+label: Timepoint
+type: entity_filed_variable
+description: 'Timepoint term ID related to current paragraph.'
+target_entity_type: paragraph
+target_bundle: change_club_timepoints
+tags: {  }
+settings:
+  field: field_timepoint_reference
+  data: original_data

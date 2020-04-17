@@ -1,0 +1,23 @@
+uuid: b9c808f3-0083-4cf6-8511-14e951ac156b
+langcode: en
+status: true
+dependencies: {  }
+id: accelerometer_status
+label: 'Accelerometer Status'
+type: data_comparison
+reverse: false
+description: 'Check to see if Accelerometer Status = Complete'
+target_entity_type: paragraph
+target_bundle: change_club_timepoints
+success_items:
+  participant_role_loop:
+    id: participant_role_loop
+    type: action
+    weight: -9
+fail_items: {  }
+tags: {  }
+settings:
+  field: field_accelerometer_status
+  data_to_compare: current_data
+  operator: '=='
+  value_to_compare: '3'

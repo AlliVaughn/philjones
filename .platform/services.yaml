@@ -6,6 +6,19 @@
 mysqldb:
     type: mysql:10.2
     disk: 2048
+    configuration:
+        schemas:
+            - shcdb
+            - texasdb
+        endpoints:
+            shc:
+                default_schema: shcdb
+                privileges:
+                    shcdb: admin
+            texas:
+                default_schema: texasdb
+                privileges:
+                    texasdb: admin
 
 rediscache:
     type: redis:5.0

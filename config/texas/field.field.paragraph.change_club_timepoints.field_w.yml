@@ -1,0 +1,21 @@
+uuid: 1feaddd0-5aad-4a0d-b52d-63fb948cfcbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_w
+    - paragraphs.paragraphs_type.change_club_timepoints
+  module:
+    - datetime
+id: paragraph.change_club_timepoints.field_w
+field_name: field_w
+entity_type: paragraph
+bundle: change_club_timepoints
+label: Sent
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,23 @@
+uuid: dc7943b2-b4c8-4b74-bd4f-b8d2aa7b1744
+langcode: en
+status: true
+dependencies: {  }
+id: survey_completed
+label: 'Survey Completed'
+type: data_comparison
+reverse: true
+description: 'Check to see if Survey Completed = TRUE'
+target_entity_type: paragraph
+target_bundle: change_club_timepoints
+success_items:
+  visit_completed:
+    id: visit_completed
+    type: condition
+    weight: -9
+fail_items: {  }
+tags: {  }
+settings:
+  field: field_survey_completed
+  data_to_compare: current_data
+  operator: empty
+  value_to_compare: 'TRUE'

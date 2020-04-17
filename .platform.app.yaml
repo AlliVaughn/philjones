@@ -15,7 +15,8 @@ type: 'php:7.2'
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
-    database: 'mysqldb:mysql'
+    database: 'mysqldb:shc'
+    texas: 'mysqldb:texas'
 ## Uncomment this line to enable Redis caching for Drupal.
 #    redis: 'rediscache:redis'
 
@@ -32,6 +33,7 @@ disk: 2048
 # 'shared:files/PATH', where PATH is a relative path under the mount's source directory.
 mounts:
     '/web/sites/default/files': 'shared:files/files'
+    '/web/sites/texas/files': 'shared:files/files-texas'
     '/tmp': 'shared:files/tmp'
     '/private': 'shared:files/private'
     '/.drush': 'shared:files/.drush'
@@ -101,6 +103,13 @@ web:
             expires: 5m
             passthru: '/index.php'
             root: 'web/sites/default/files'
+
+        '/sites/texas/files':
+            # Allow access to all files in the public files directory.
+            allow: true
+            expires: 5m
+            passthru: '/index.php'
+            root: 'web/sites/texas/files'
 
             # Do not execute PHP scripts.
             scripts: false
