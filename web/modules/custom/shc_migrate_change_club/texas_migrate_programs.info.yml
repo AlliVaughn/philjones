@@ -1,0 +1,5 @@
+name: 'SHC Migrate Change Club'
+type: module
+description: 'Migrates survey responses from Qualtrics to create/update users and nodes of type change_club'
+core: 8.x
+package: 'SHC'

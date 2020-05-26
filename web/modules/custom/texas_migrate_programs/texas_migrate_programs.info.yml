@@ -1,0 +1,5 @@
+name: 'Texas Migrate Programs'
+type: module
+description: 'Migrates survey responses from Qualtrics to create/update users and nodes containing program data for Healthy Texas'
+core: 8.x
+package: 'TEXAS'

@@ -1,0 +1,273 @@
+<?php
+
+/**
+ * @file
+ * Contains texas_migrate_programs.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+
+/**
+ * Implements hook_help().
+ */
+function texas_migrate_programs_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the texas_migrate_programs module.
+    case 'help.page.texas_migrate_programs':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Migrates survey responses from Qualtrics to create/update users and nodes for program data') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+
+/**
+ * Downloads survey results from qualtrics().
+ */
+function texas_migrate_programs_runner(){
+// get settings
+  $config = \Drupal::config("texas_migrate_programs.credentials");
+  $settings = array();
+  $settings["api_token"] = $config->get("api_token");
+  $settings["data_center"] = $config->get("data_center");
+  $settings["survey_id"] = $config->get("survey_id");
+  $surveys = explode("|", $settings["survey_id"]);
+  //$path = \Drupal::service('stream_wrapper_manager')->getViaUri('private://qualtrics_data/')->getUri();
+  $path = drupal_realpath('private://qualtrics_data/');
+  $survey ="";
+  $textout = "";
+  $index = 0;
+  $textout = $textout ."<ul>";
+  foreach($surveys as $survey) {
+    $textout = $textout . "<li><strong>Survey index</strong> is " .$index. "</li><ul>";
+    $textout = $textout . "<li><strong>Survey ID</strong> is ". $surveys[$index]. "</li>";
+    $textout = $textout . "<li><strong>File Path</strong> is ". $path. "</li>";
+
+
+    $textout = $textout . texas_migrate_programs_qualtrics($settings, $surveys[$index]). "</ul>";
+    $index++;
+  }
+  $textout = $textout ."</ul>";
+ return $textout;
+}
+
+
+/**
+ * Downloads survey results from qualtrics().
+ */
+function texas_migrate_programs_qualtrics($settings, $surveyid){
+  $progressid = "";
+  $progresspercentcomplete = "";
+  $fileid = "";
+  $filepercentcomplete = "";
+  $filedownload = "";
+  $unzip = "";
+  $textout = "";
+
+//get a session ID
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => "https://".$settings['data_center'].".qualtrics.com/API/v3/surveys/".$surveyid."/export-responses",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_POSTFIELDS =>"{\n\t\"format\": \"json\"\n}",
+    CURLOPT_HTTPHEADER => array(
+      "X-API-TOKEN: ".$settings['api_token'],
+      "Content-Type: application/json"
+    ),
+  ));
+
+  $progressid = curl_exec($curl);
+  //uncomment to debug $progressid
+  //$textout =  $textout . "<li><strong>Session lookup</strong> is " . $progressid . "</li>";
+  curl_close($curl);
+  $progressid = json_decode($progressid);
+    //get percent complete for session build
+    $progresspercentcomplete = $progressid->result->percentComplete;
+    //$textout =  $textout . "<li>ProgressID is <strong>" . $progresspercentcomplete . "%</strong> complete</li>";
+    if (!empty($progressid->result->progressId)){
+    $progressid =  $progressid->result->progressId;
+    $textout =  $textout . "<li><strong>progressId</strong> is " . $progressid . "</li>";
+    }else{
+      $textout =  $textout . "<li><strong>No progressId !</strong></li>";
+    }
+// get a file ID
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => "https://".$settings['data_center'].".qualtrics.com/API/v3/surveys/".$surveyid."/export-responses/".$progressid."",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => array(
+      "X-API-TOKEN: ".$settings['api_token'],
+      "Content-Type: application/json"
+    ),
+  ));
+
+  $fileid = curl_exec($curl);
+  //uncomment to debug file build
+  //$textout =  $textout . "<li><strong>File lookup</strong> is " . $fileid . "</li>";
+
+  curl_close($curl);
+  $fileid = json_decode($fileid);
+    //get percent complete for requested file build
+    $filepercentcomplete = $fileid->result->percentComplete;
+    $textout =  $textout . "<li>File build is <strong>" . $filepercentcomplete . "%</strong> complete</li>";
+    //report percent completed
+    if ($filepercentcomplete == 100){
+      $fileid =  $fileid->result->fileId;
+      $textout =  $textout . "<li><strong>fileId</strong> is " . $fileid . "</li>";
+    }else{
+      $textout =  $textout . "<li><strong><div class = 'error'>File is ".$filepercentcomplete."% complete !</div></strong></li>";
+      //exit;
+    }
+  //only try to download if file build is 100 percent complete
+  if ($filepercentcomplete == 100) {
+// download and save the .zip file
+// file to save the contents to
+    $path = drupal_realpath('private://qualtrics_data/');
+    $fp = fopen($path.$surveyid.".zip", "w+b");
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "https://".$settings['data_center'].".qualtrics.com/API/v3/surveys/".$surveyid."/export-responses/".$fileid."/file",
+      CURLOPT_FILE => $fp,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "GET",
+      CURLOPT_HTTPHEADER => array(
+        "X-API-TOKEN: ".$settings['api_token'],
+        "Content-Type: application/json"
+      ),
+    ));
+
+    $filedownload = curl_exec($curl);
+      if (!empty($filedownload)){
+        fwrite($fp, $filedownload);
+        $textout =  $textout . "<li>downloaded <strong>".$surveyid.".zip</strong></li>";
+
+      }else{
+        $textout =  $textout . "<li><strong>File Download failed !</strong></li>";
+      }
+
+    curl_close($curl);
+    fclose($fp);
+    $unzip = texas_migrate_programs_unzip($surveyid);
+  }
+  //texas_migrate_programs_rename();
+  $content = $textout;
+  $content = $content . $unzip;
+  return $content;
+
+}
+
+
+/**
+ * Unzips and renames file downloaded from qualtrics().
+ */
+function texas_migrate_programs_unzip($surveyid){
+
+// unzip path
+$path = drupal_realpath('private://qualtrics_data/');
+// zip file name
+$filename = $path.$surveyid.'.zip';
+// zip file name
+//$filename = '../private/qualtrics_data/'.$surveyid.'.zip';
+// unzip path
+//$path = "../private/qualtrics_data/";
+// do the business
+$zip = new ZipArchive;
+$res = $zip->open($filename);
+  if ($res === TRUE) {
+  // get file name, only one name
+   $oldname = $zip->getNameIndex(0);
+  // rename file
+   $zip->renameName($oldname, $surveyid.'.json');
+   $zip->close();
+   $textout = '<li>renamed <strong>'.$oldname.'</strong></li>';
+  } else {
+   $textout = '<li><strong>Rename failed !</strong><li>';
+  }
+$res = $zip->open($filename);
+  if ($res === TRUE) {
+   // extract file
+   $zip->extractTo($path);
+   $zip->close();
+   $textout = $textout . '<li>unzipped <strong>'.$surveyid.'.zip</strong></li>';
+   $textout = $textout . '<li><strong>'.$surveyid.'.json</strong> is ready.</li>';
+  } else {
+   $textout = $textout . '<li><strong>Unzip failed !</strong></li>';
+  }
+
+return $textout;
+
+}
+
+
+function texas_migrate_programs_cron() {
+  $textout = "";
+  // access configuration.
+  $cron_config = \Drupal::config('texas_migrate_programs.settings');
+  // default to an hourly interval.
+  $interval = $cron_config
+    ->get('interval');
+  $interval = !empty($interval) ? $interval : 3600;
+
+  //  keep a time for the next run in the site state.
+  $next_execution = \Drupal::state()
+    ->get('texas_migrate_programs_cron.next_execution', 0);
+  if (REQUEST_TIME >= $next_execution) {
+
+    // This is a silly example of a cron job.
+    // It just makes it obvious that the job has run without
+    // making any changes to your database.
+    $textout = texas_migrate_programs_runner();
+    \Drupal::logger('texas_migrate_programs_cron')
+      ->notice('Qualtrics data import ran via cron.'. $textout);
+    if (\Drupal::state()
+      ->get('texas_migrate_programs_cron_show_status_message')) {
+      \Drupal::messenger()
+        ->addMessage(t('texas_migrate_programs_cron executed at %time', [
+        '%time' => date('c'),
+      ]));
+      \Drupal::state()
+        ->set('texas_migrate_programs_cron_show_status_message', FALSE);
+    }
+    \Drupal::state()
+      ->set('texas_migrate_programs_cron.next_execution', REQUEST_TIME + $interval);
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function texas_migrate_programs_theme() {
+  return [
+    'default_block' => [
+      'variables' => [
+        'content' => NULL
+      ],
+      'render element' => 'children',
+    ],
+  ];
+}

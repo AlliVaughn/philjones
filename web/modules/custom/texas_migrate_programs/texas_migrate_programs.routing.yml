@@ -1,0 +1,14 @@
+texas_migrate_programs.settings:
+  path: 'admin/config/services/qualtrics-settings'
+  defaults:
+   _form: '\Drupal\texas_migrate_programs\Form\QualtricsSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'
+
+texas_migrate_programs.texas_migrate_programs_controller_content:
+  path: 'texas_migrate_programs'
+  defaults:
+    _controller: '\Drupal\texas_migrate_programs\Controller\TexasMigrateProgramsController::content'
+    _title: 'Import Qualtrics survey results'
+  requirements:
+    _permission: 'administer site configuration'
