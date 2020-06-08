@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a69b6d0076ee4fad2514b0e32c87374",
+    "content-hash": "0f3c230077057f162402a81be2ed7a60",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -6229,6 +6229,60 @@
                 "source": "https://cgit.drupalcode.org/pathauto",
                 "issues": "https://www.drupal.org/project/issues/pathauto",
                 "documentation": "https://www.drupal.org/docs/8/modules/pathauto"
+            }
+        },
+        {
+            "name": "drupal/permissions_by_term",
+            "version": "2.24.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/permissions_by_term.git",
+                "reference": "8.x-2.24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/permissions_by_term-8.x-2.24.zip",
+                "reference": "8.x-2.24",
+                "shasum": "67cb1b870fe836febd6ac4d44dfb6ec3d8ba684d"
+            },
+            "require": {
+                "drupal/core": "^8.0",
+                "php": ">=7.1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.24",
+                    "datestamp": "1590654258",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Majmesku",
+                    "homepage": "https://www.drupal.org/user/786132",
+                    "email": "p.majmesku@gmail.com"
+                },
+                {
+                    "name": "SaschaHannes",
+                    "homepage": "https://www.drupal.org/user/3536189"
+                },
+                {
+                    "name": "marcoliver",
+                    "homepage": "https://www.drupal.org/user/1529744"
+                }
+            ],
+            "description": "Restricts access to nodes by taxonomy terms in relation to users and their roles.",
+            "homepage": "https://www.drupal.org/project/permissions_by_term",
+            "support": {
+                "source": "https://git.drupalcode.org/project/permissions_by_term"
             }
         },
         {

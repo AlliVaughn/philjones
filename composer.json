@@ -61,6 +61,7 @@
         "drupal/oauth2_client": "^2.0",
         "drupal/paragraphs": "^1.9",
         "drupal/pathauto": "^1.4",
+        "drupal/permissions_by_term": "^2.24",
         "drupal/pet": "^1.0",
         "drupal/qualtricsxm": "^1.2",
         "drupal/recaptcha": "^2.5",
